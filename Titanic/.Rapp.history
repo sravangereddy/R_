@@ -1,0 +1,8 @@
+install.packages("Rcmdr", dependencies=TRUE)
+require(Rcmdr)
+>table
+?table
+setwd("~/Documents/R/Titanic")
+read_r <- read_csv("~/Documents/R/Titanic/testDdataFile.csv")
+read_r <- read.csv("~/Documents/R/Titanic/testDdataFile.csv")
+View(read_r)
