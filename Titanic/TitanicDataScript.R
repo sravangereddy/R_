@@ -52,3 +52,36 @@ View(test_dat_reader)
 
 write.csv(test_data_frame,file = "testDdataFile_withrownames.csv", row.names = TRUE)
 test_dat_reader_header <- read_csv("~/Documents/R/Titanic/testDdataFile_withrownames.csv")
+
+
+#Summary function
+#Retruns  min max median mean 1st Qu 3rd Qu if the column is integer type
+# Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+# 0.0000  0.0000  0.0000  0.3838  1.0000  1.0000 
+summary(train$Survived)
+
+# Returns count similar to table(train$Sex)
+# female   male 
+# 314    577
+summary(train$Sex)
+
+#Read table data in 2D - multiple columns
+# 0         1
+# female  9.090909 26.150393
+# male   52.525253 12.233446
+prop.table(table(train$Sex,train$Survived))*100
+
+# the proportion table command by default takes each entry in the table and divides by the total 
+# number of passengers. What we want ßto see is the row-wise proportion, ie, the proportion of each 
+# sex that survived, as separate groups. So we need to tell the command to give us proportions in 
+# the 1st dimension which stands for the rows (using “2” instead would give you column proportions)
+prop.table(table(train$Sex,train$Survived),1)
+prop.table(table(train$Sex,train$Survived),2)
+
+
+#create or update a colum
+test <- read.csv("~/Documents/GitHub/R_/Titanic/test.csv")
+
+#Write data to a column which satisfies a condtion
+#data is written to column Survived where Sex is female
+test$Survived[test$Sex == 'female'] <- 1
